@@ -21,13 +21,17 @@ User = get_user_model()
 
 
 class Category(AbstracModel):
-    title = models.CharField(max_length=256, blank=False, verbose_name="Заголовок")
+    title = models.CharField(
+        max_length=256,
+        blank=False,
+        verbose_name="Заголовок"
+    )
     description = models.TextField(blank=False, verbose_name="Описание")
     slug = models.SlugField(
         blank=False,
         verbose_name="Идентификатор",
-        help_text="Идентификатор страницы для URL; "
-        "разрешены символы латиницы, цифры, дефис и подчёркивание.",
+        help_text="Идентификатор страницы для URL; разрешены символы латиницы,"
+        " цифры, дефис и подчёркивание.",
         unique=True,
     )
 
@@ -40,7 +44,11 @@ class Category(AbstracModel):
 
 
 class Location(AbstracModel):
-    name = models.CharField(max_length=256, blank=False, verbose_name="Название места")
+    name = models.CharField(
+        max_length=256,
+        blank=False,
+        verbose_name="Название места"
+    )
 
     class Meta:
         verbose_name = "местоположение"
@@ -56,8 +64,8 @@ class Post(AbstracModel):
     pub_date = models.DateTimeField(
         blank=False,
         verbose_name="Дата и время публикации",
-        help_text="Если установить дату и время в "
-        "будущем — можно делать отложенные публикации.",
+        help_text="Если установить дату и время в будущем — "
+        "можно делать отложенные публикации.",
     )
     author = models.ForeignKey(
         User,
@@ -80,7 +88,7 @@ class Post(AbstracModel):
         blank=False,
         on_delete=models.SET_NULL,
         null=True,
-        related_name="categoties",
+        related_name="categories",
         verbose_name="Категория",
     )
 
